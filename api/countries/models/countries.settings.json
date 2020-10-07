@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "countries",
+  "info": {
+    "name": "Countries"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "country_name": {
+      "type": "string"
+    },
+    "country_flag": {
+      "model": "file",
+      "via": "related",
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "plugin": "upload",
+      "required": false
+    },
+    "country_info": {
+      "type": "text"
+    }
+  }
+}
