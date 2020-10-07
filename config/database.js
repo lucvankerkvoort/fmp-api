@@ -1,4 +1,4 @@
-module.exports = ({ env }) => ({
+module.exports = () => ({
   defaultConnection: "default",
   connections: {
     default: {
@@ -6,6 +6,7 @@ module.exports = ({ env }) => ({
       settings: {
         client: "mongo",
         uri: `${process.env.DATABASE_URI}`,
+        database: `${process.env.DATABASE_NAME}`,
       },
       options: {
         ssl: true,
