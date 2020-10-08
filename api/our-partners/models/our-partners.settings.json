@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "our_partners",
+  "info": {
+    "name": "Our Partners"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "partner_name": {
+      "type": "string"
+    },
+    "partner_link": {
+      "type": "string"
+    }
+  }
+}
