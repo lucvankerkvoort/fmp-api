@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import P from "../P";
 import Row from "../Row";
 import Label from "../Label";
+import { Button } from "@buffetjs/core";
 
 class UploadFileForm extends Component {
     state = {
@@ -29,19 +30,41 @@ class UploadFileForm extends Component {
       const file = e.dataTransfer.files[0];
       this.onChangeImportFile(file);
     };
+
+    readFileContent = file => {
+      const reader = new FileReader();
+      return new Promise((resolve, reject) => {
+        reader.onload = event => resolve(event.target.result);
+        reader.onerror = reject;
+        reader.readAsText(file);
+      });
+    };
+  
+    clickAnalyzeUploadFile = async () => {
+      const { file, options } = this.state;
+      const data = file && (await this.readFileContent(file));
+      data &&
+        this.props.onRequestAnalysis({
+          source: "upload",
+          type: file.type,
+          options,
+          data
+        });
+    };
        render() {
     return (
       <div className={"col-12"}>
         <Row className={"row"}>
-          <Label
-            isDragging={this.state.isDragging}
-            onDrop={this.handleDrop}
-            onDragEnter={this.handleDragEnter}
-            onDragOver={e => {
-              e.preventDefault();
-              e.stopPropagation();
-            }}
-          >
+        <Label
+  showLoader={this.props.loadingAnalysis} // <---
+  isDragging={this.state.isDragging}
+  onDrop={this.handleDrop}
+  onDragEnter={this.handleDragEnter}
+  onDragOver={e => {
+    e.preventDefault();
+    e.stopPropagation();
+  }}
+>
             <svg
               className="icon"
               xmlns="http://www.w3.org/2000/svg"
@@ -121,8 +144,20 @@ class UploadFileForm extends Component {
             />
           </Label>
         </Row>
+        <Row className={"row"}>
+  <Button
+    label={"Analyze"}
+    color={this.state.file ? "secondary" : "cancel"}
+    disabled={!this.state.file}
+    onClick={this.clickAnalyzeUploadFile} // <---
+  />
+</Row>
       </div>
     );
   }
 }
+UploadFileForm.propTypes = {
+  onRequestAnalysis: PropTypes.func.isRequired,
+  loadingAnalysis: PropTypes.bool.isRequired
+};
 export default UploadFileForm;
