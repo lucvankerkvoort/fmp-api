@@ -19,6 +19,10 @@
     },
     "country_picture": {
       "type": "string"
+    },
+    "continent": {
+      "via": "countries",
+      "model": "continent"
     }
   }
 }
