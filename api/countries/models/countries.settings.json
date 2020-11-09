@@ -14,15 +14,48 @@
     "country_name": {
       "type": "string"
     },
-    "country_info": {
+    "Intro": {
       "type": "richtext"
     },
-    "country_picture": {
-      "type": "string"
-    },
     "continent": {
-      "via": "countries",
-      "model": "continent"
+      "model": "continent",
+      "via": "countries"
+    },
+    "Background": {
+      "type": "richtext"
+    },
+    "Call_For_Action": {
+      "type": "richtext"
+    },
+    "Family_Law": {
+      "type": "richtext"
+    },
+    "Parental_Abduction": {
+      "type": "richtext"
+    },
+    "Prevention": {
+      "type": "richtext"
+    },
+    "What_to_do_when_your_child_is_missing": {
+      "type": "richtext"
+    },
+    "Key_Statistics": {
+      "type": "richtext"
+    },
+    "Parental_Alienation": {
+      "type": "richtext"
+    },
+    "Parental_Abduction_Infographics": {
+      "type": "richtext"
+    },
+    "Family_Law_Infographics": {
+      "type": "richtext"
+    },
+    "Call_For_Action_Infographics": {
+      "type": "richtext"
+    },
+    "Background_Infographics": {
+      "type": "richtext"
     }
   }
 }
